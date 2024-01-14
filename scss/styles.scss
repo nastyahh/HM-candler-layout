@@ -1,1 +1,87 @@
-@import "reset";
+$beige: #fff8f3;
+
+body {
+  font-family: "Yeseva One", serif;
+  font-size: 14px;
+  line-height: 1.2;
+}
+a {
+  color: #000;
+}
+
+.container {
+  max-width: 1180px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+.menu__btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  background-color: transparent;
+  & span {
+    height: 1px;
+    background-color: #7b6152;
+    width: 100%;
+  }
+}
+.header {
+  background: $beige;
+  font-family: "Comfortaa", sans-serif;
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 4px;
+  }
+}
+.menu__list {
+  display: flex;
+  gap: 20px;
+  &__link {
+    text-transform: uppercase;
+  }
+}
+.phone {
+  position: relative;
+}
+.phone::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background: url(../img/icon-phone.svg);
+  width: 20px;
+  height: 20px;
+  left: -23px;
+  top: -3px;
+}
+
+// Footer
+.footer {
+  padding: 40px 0 35px;
+  font-family: "Comfortaa", sans-serif;
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__contacts {
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+  }
+  &__phone::before {
+    content: none;
+  }
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+}
+.email {
+  margin: 17px 0;
+}
