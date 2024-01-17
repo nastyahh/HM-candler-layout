@@ -1,3 +1,44 @@
+@mixin title($color) {
+  color: $color;
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+@mixin text($color) {
+  font-family: "Comfortaa", sans-serif;
+  color: $color;
+}
+@mixin button($paddfirst, $paddsec) {
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 600;
+  background: $yellow;
+  padding: $paddfirst $paddsec;
+}
+@mixin section-decor() {
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 22px;
+    height: 30px;
+    background: url(../img/candle.png);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 9px;
+    left: 22px;
+    width: 400%;
+    height: 1px;
+    background: #7b6152;
+  }
+}
+$brown: #a5978e;
+$lightbrown: #bea495;
+$darkbrown: #7b6152;
+$cream: #fafafa;
+$yellow: #ffbd59;
 $beige: #fff8f3;
 
 body {
@@ -40,6 +81,7 @@ a {
 .menu__list {
   display: flex;
   gap: 20px;
+  z-index: 20;
   &__link {
     text-transform: uppercase;
   }
@@ -58,6 +100,258 @@ a {
   top: -3px;
 }
 
+.main {
+  overflow-x: clip;
+  background: $beige;
+}
+
+.banner {
+  padding: 40px 0 150px;
+  &__container {
+    position: relative;
+  }
+  &__content {
+    width: 370px;
+    padding: 150px 0 270px;
+  }
+  &__title {
+    @include title(#000);
+    font-size: 30px;
+  }
+  &__text {
+    @include text(#000);
+    margin-bottom: 48px;
+  }
+  &__btn {
+    @include button(18px, 54px);
+  }
+  &__img {
+    top: 0;
+    left: 240px;
+    position: absolute;
+  }
+  &__img-l {
+    width: 1068px;
+    object-fit: contain;
+  }
+}
+// About
+.about {
+  padding: 50px 0;
+  background: $brown;
+  margin-bottom: 150px;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__content {
+    min-width: 370px;
+  }
+  &__title {
+    @include title($cream);
+  }
+  &__text {
+    @include text($cream);
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+    flex-basis: 930px;
+    padding: 0 0 50px 110px;
+    @include section-decor();
+  }
+  &__item__img {
+    margin-bottom: 10px;
+  }
+  &__item__text {
+    font-family: "Comfortaa", sans-serif;
+    font-size: 11px;
+    color: $cream;
+  }
+}
+// Products
+.section__item-text {
+  font-family: "Comfortaa", sans-serif;
+}
+.section {
+  padding-bottom: 150px;
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 372px auto;
+  }
+  &__text {
+    font-family: "Comfortaa", sans-serif;
+  }
+  &__content {
+    position: relative;
+    @include section-decor();
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 20px;
+    padding-bottom: 83px;
+  }
+}
+.products {
+  &__title {
+    @include title(#000);
+  }
+  &__content {
+    gap: 50px 93px;
+  }
+  &__item {
+    width: 290px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  &__item__title,
+  &__item__price {
+    font-size: 16px;
+  }
+  &__item__title {
+    margin-bottom: 16px;
+  }
+  &__item__price {
+    margin: 8px 0 12px;
+  }
+  &__item__text {
+    font-size: 12px;
+    margin-bottom: 27px;
+  }
+  &__btn {
+    @include button(18px, 45px);
+  }
+}
+// Steps
+.steps {
+  &__title {
+    @include title(#000);
+  }
+  &__content {
+    counter-reset: number;
+    gap: 72px 25px;
+  }
+  &__item {
+    position: relative;
+    list-style-type: none;
+    display: flex;
+    gap: 40px;
+    &::before {
+      counter-increment: number;
+      content: "0" counter(number);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      font-size: 30px;
+      color: $lightbrown;
+    }
+    &:nth-child(n + 10)::before {
+      content: counter(number);
+    }
+  }
+  &__item--even::before {
+    left: auto;
+    right: 0;
+  }
+  &__item__text {
+    flex-basis: 174px;
+    padding-bottom: 40px;
+  }
+}
+.courses {
+  &__content {
+    gap: 0 100px;
+  }
+  &__item__img {
+    margin-bottom: 28px;
+  }
+  &__item__text {
+    font-size: 14px;
+    margin-bottom: 23px;
+  }
+  &__item__box {
+    position: relative;
+  }
+  &__title,
+  &__time,
+  &__price {
+    position: absolute;
+    color: #fff;
+    font-size: 11px;
+    background: $lightbrown;
+  }
+  &__title,
+  &__time {
+    left: 9px;
+  }
+  &__title {
+    top: 43%;
+    padding: 15px 15px 15px 10px;
+  }
+  &__time {
+    top: 58%;
+    padding: 7px 10px;
+  }
+  &__time span {
+    font-family: "Comfortaa", sans-serif;
+    font-size: 10px;
+  }
+  &__price {
+    padding: 19px 10px;
+    bottom: 14px;
+    right: 0;
+  }
+  &__btn {
+    @include button(13px, 16px);
+  }
+}
+// Team
+.team {
+  padding-top: 50px;
+  margin-bottom: 150px;
+  background: $brown;
+  color: #fff;
+  &__wrapper {
+    gap: 0 45px;
+  }
+  &__members {
+    margin-left: 0;
+    gap: 78px 75px;
+  }
+  &__title {
+    @include title(#fff);
+  }
+  &__members.section__content::before,
+  &__members.section__content::after {
+    content: none;
+  }
+  &__members__img {
+    position: relative;
+  }
+  &__members__info {
+    position: absolute;
+    bottom: 8px;
+    right: 24px;
+    width: 165px;
+    padding: 15px 9px;
+    background: $darkbrown;
+    text-align: center;
+    z-index: 5;
+  }
+  &__members__name {
+    margin-bottom: 3px;
+    font-size: 12px;
+  }
+  &__members__work {
+    font-family: "Comfortaa", sans-serif;
+    font-size: 11px;
+  }
+}
 // Footer
 .footer {
   padding: 40px 0 35px;
